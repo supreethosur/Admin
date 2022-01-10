@@ -33,13 +33,15 @@ public class AdminController {
 
 	@PostMapping("/addFlights")
 	public FlightModel addFlights(@RequestBody FlightModel ipflight) throws Exception {
-
+//		ipflight.setDepartureTime(LocalTime.parse(ipflight.getDepartureTime(), DateTimeFormatter.ofPattern("HH.mm.ss")));
+		System.out.println(123);
 		return flightService.addFlight(ipflight);
 	}
 
 
 	@DeleteMapping("/deleteFlight/{Id}")
 	public void deleteFlight(@PathVariable Integer Id) throws Exception {
+		System.out.println(12314);
 		flightService.deleteById(Id);
 	}
 

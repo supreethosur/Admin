@@ -20,7 +20,7 @@ public class AdminService {
 	RestTemplate restTemplate;
 
 	public FlightModel addFlight(FlightModel ipflight) {
-		String url="http://localhost:8085/Flight/addFlights";
+		String url="http://localhost:8082/addFlights";
 		ParameterizedTypeReference<FlightModel> responseType= new ParameterizedTypeReference<FlightModel>() {
 		};
 		
@@ -30,17 +30,17 @@ public class AdminService {
 	}
 
 	public void deleteById(Integer id) {
-		String url="http://localhost:8085/Flight/deleteFlight/{"+id+"}";
+		String url="http://localhost:8082/deleteFlight/"+id;
 //		ParameterizedTypeReference<> responseType= new ParameterizedTypeReference<>() {
 //		};
-		
+		System.out.println(url);
 		HttpEntity<?> httpEntity=new HttpEntity<>(null,null);
 		ResponseEntity<Void> res1=restTemplate.exchange(url, HttpMethod.DELETE, httpEntity,Void.class);
 		
 	}
 
 	public FlightModel updateFlight(FlightModel flight) {
-		String url="http://localhost:8085/Flight/updateFlight";
+		String url="http://localhost:8082/updateFlight";
 		ParameterizedTypeReference<FlightModel> responseType= new ParameterizedTypeReference<FlightModel>() {
 		};
 		
@@ -51,7 +51,7 @@ public class AdminService {
 
 	public List<FlightModel> getAllFlights() {
 		
-		String url="http://localhost:8085/Flight/GetAllFlights";
+		String url="http://localhost:8082/GetAllFlights";
 		ParameterizedTypeReference<List<FlightModel>> responseType= new ParameterizedTypeReference<List<FlightModel>>() {
 		};
 		HttpEntity<?> httpEntity=new HttpEntity(null,null);
