@@ -18,8 +18,9 @@ import com.example.Model.JwtRequest;
 import com.example.Model.JwtResponse;
 import com.example.Service.JwtUserDetailsService;
 
+
 @RestController
-@CrossOrigin
+@CrossOrigin(origins= {"http://localhost:4200"})
 public class JwtAuthenticationController {
 
 	@Autowired
@@ -34,6 +35,7 @@ public class JwtAuthenticationController {
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 
+		System.out.println(authenticationRequest);
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
 		final UserDetails userDetails = userDetailsService

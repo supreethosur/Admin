@@ -3,6 +3,7 @@ package com.example.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.Model.FlightModel;
 import com.example.Service.AdminService;
 
+
 @RestController
+@CrossOrigin(origins = "*")
 public class AdminController {
 
 
@@ -26,9 +29,9 @@ public class AdminController {
 		return "hello" ;
 	}
 	
-	@GetMapping("/getAlFlights")
-	public  List<FlightModel>  getAlFlights() throws Exception {
-		return flightService.getAllFlights();
+	@GetMapping("/GetAllFlights")
+	public  List<FlightModel>  getAlFlights(String flightName) throws Exception {
+		return flightService.getAllFlights(flightName);
 	}
 
 	@PostMapping("/addFlights")

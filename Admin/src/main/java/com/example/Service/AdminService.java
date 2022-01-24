@@ -33,7 +33,7 @@ public class AdminService {
 		String url="http://localhost:8082/deleteFlight/"+id;
 //		ParameterizedTypeReference<> responseType= new ParameterizedTypeReference<>() {
 //		};
-		System.out.println(url);
+		
 		HttpEntity<?> httpEntity=new HttpEntity<>(null,null);
 		ResponseEntity<Void> res1=restTemplate.exchange(url, HttpMethod.DELETE, httpEntity,Void.class);
 		
@@ -49,9 +49,9 @@ public class AdminService {
 		return res1.getBody();
 	}
 
-	public List<FlightModel> getAllFlights() {
+	public List<FlightModel> getAllFlights(String flightName) {
 		
-		String url="http://localhost:8082/GetAllFlights";
+		String url="http://localhost:8082/GetAllFlights?FlightName="+flightName;
 		ParameterizedTypeReference<List<FlightModel>> responseType= new ParameterizedTypeReference<List<FlightModel>>() {
 		};
 		HttpEntity<?> httpEntity=new HttpEntity(null,null);
