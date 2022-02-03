@@ -3,6 +3,7 @@ package com.example.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -18,9 +19,13 @@ public class AdminService {
 
 	@Autowired
 	RestTemplate restTemplate;
-
+	
+	@Value("${FlightUrl}")
+	private String flightService;
+ 
 	public FlightModel addFlight(FlightModel ipflight) {
-		String url="http://localhost:8082/addFlights";
+		String url=flightService+"/addFlights";
+		System.out.println(url);
 		ParameterizedTypeReference<FlightModel> responseType= new ParameterizedTypeReference<FlightModel>() {
 		};
 		
@@ -30,7 +35,7 @@ public class AdminService {
 	}
 
 	public void deleteById(Integer id) {
-		String url="http://localhost:8082/deleteFlight/"+id;
+		String url=flightService+"/deleteFlight/"+id;
 //		ParameterizedTypeReference<> responseType= new ParameterizedTypeReference<>() {
 //		};
 		
@@ -40,7 +45,7 @@ public class AdminService {
 	}
 
 	public FlightModel updateFlight(FlightModel flight) {
-		String url="http://localhost:8082/updateFlight";
+		String url=flightService+"/updateFlight";
 		ParameterizedTypeReference<FlightModel> responseType= new ParameterizedTypeReference<FlightModel>() {
 		};
 		
@@ -51,7 +56,7 @@ public class AdminService {
 
 	public List<FlightModel> getAllFlights(String flightName) {
 		
-		String url="http://localhost:8082/GetAllFlights?FlightName="+flightName;
+		String url=flightService+"/GetAllFlights?FlightName="+flightName;
 		ParameterizedTypeReference<List<FlightModel>> responseType= new ParameterizedTypeReference<List<FlightModel>>() {
 		};
 		HttpEntity<?> httpEntity=new HttpEntity(null,null);

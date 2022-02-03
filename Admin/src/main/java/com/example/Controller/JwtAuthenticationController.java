@@ -20,7 +20,7 @@ import com.example.Service.JwtUserDetailsService;
 
 
 @RestController
-@CrossOrigin(origins= {"http://localhost:4200"})
+@CrossOrigin(origins = "*") //(origins= {"http://localhost:4200"})
 public class JwtAuthenticationController {
 
 	@Autowired
